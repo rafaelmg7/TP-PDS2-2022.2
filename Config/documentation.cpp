@@ -96,3 +96,29 @@ void Indice::imprime(){
         cout << endl;
     }
 }
+
+set<string> Indice::recuperação(string frase){
+
+    string temp = "";
+    vector<string> v;
+    // vector<string> docs;
+    map<string, int> docs;
+    for(auto ch : frase){
+        if(ch == ' '){
+            v.push_back(temp);
+            temp = "";
+        }else{
+            temp += ch;
+        }
+    }
+
+    for(string palavra : v){
+        if(elementos_.find(palavra) != elementos_.end()){
+            map[elementos_.find(palavra)->second] += 1;
+        }
+    }
+
+    for 
+
+    
+}
