@@ -1,8 +1,3 @@
-#include <iostream>
-#include <algorithm>
-#include <sstream>
-#include <iomanip>
-
 #include "contract.hpp"
 
 using namespace std;
@@ -44,7 +39,7 @@ string normalizaPalavra(string palavra){
             int num = 0;
 
             // Se a letra tiver um acento, codigoLetra indicará isso (estando além dos valores ASCII tradicionais)
-            // e atual[1] indicará qual é o acento.
+            // e atual[1] indicará qual é o acento. int((unsigned char)atual[1]) + 64 retorna o código para o caracter com o acento.
             if(codigoLetra > 127){
                 num = int((unsigned char)atual[1]) + 64;
                 
@@ -88,37 +83,61 @@ Indice::Indice(){
 }
 
 void Indice::imprime(){
-    for(map<string, set<string>>::iterator it = elementos_.begin(); it != elementos_.end(); ++it){
-        cout << it->first << "   ";
-        for(string doc : it->second){
+    for(auto elemento : elementos_){
+        cout << elemento.first << "   ";
+        for(string doc : elemento.second){
             cout << doc << " | ";
         }
         cout << endl;
     }
 }
 
-set<string> Indice::recuperação(string frase){
+set<string> Indice::recuperacao(string frase){
 
-    string temp = "";
-    vector<string> v;
-    // vector<string> docs;
+    string aux;
+    vector<string> palavrasFrase;
     map<string, int> docs;
+    set<string> relevantes;
+    int numPalavras = 0;
+
+    // Passa por cada caracter da frase a ser buscada, de modo a buscar palavras e inserí-las no vetor "palavrasFrase"
     for(auto ch : frase){
         if(ch == ' '){
-            v.push_back(temp);
-            temp = "";
+            palavrasFrase.push_back(normalizaPalavra(aux));
+            aux = "";
+            numPalavras++;
         }else{
-            temp += ch;
+            aux += ch;
         }
     }
 
-    for(string palavra : v){
+    // Insere também a última palavra da frase no vetor
+    palavrasFrase.push_back(normalizaPalavra(aux));
+    numPalavras++;
+
+    // Passa pelas palavras da frase para contar quantas delas aparecem em cada documento
+    for(string palavra : palavrasFrase){
         if(elementos_.find(palavra) != elementos_.end()){
-            map[elementos_.find(palavra)->second] += 1;
+
+            // Guarda o nome dos documentos nos quais a palavra atual aparece e incrementa o número de palavras que aparecem em cada um
+            set<string> docsComPalavra = elementos_.find(palavra)->second;
+            for(string doc : docsComPalavra){
+                docs[doc]++;
+            }
+        }
+
+        // Se alguma das palavras a serem buscadas não existirem no índice, então não há documentos relevantes a serem retornados
+        else{
+            break;
         }
     }
 
-    for 
+    // Insere os documentos que contém todas as palavras no set de documentos relevantes
+    for(auto doc : docs){
+        if(doc.second == numPalavras){
+            relevantes.insert(doc.first);
+        }
+    }
 
-    
+    return relevantes;
 }
