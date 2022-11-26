@@ -1,4 +1,4 @@
-#include "contract.hpp"
+#include "./contract.hpp"
 
 using namespace std;
 
@@ -63,7 +63,7 @@ string normalizaPalavra(string palavra){
 }
 
 Indice::Indice(){
-    string path = "./documentos";
+    string path = "../documentos";
     ifstream file;
 
     for (const auto & entry : fs::directory_iterator(path)){
