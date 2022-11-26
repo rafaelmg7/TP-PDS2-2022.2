@@ -22,4 +22,7 @@ class Indice {
         map<string, set<string>> elementos_;
 };
 
+int normalizaCaracter(int valorAsc);
+string normalizaPalavra(string palavra);
+
 #endif // __CONTRACT_H__
