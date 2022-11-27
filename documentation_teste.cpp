@@ -55,4 +55,19 @@ TEST_CASE("Testa Indice::recuperacao(string frase)"){
     
 
     CHECK_EQ(d.recuperacao("Dominick V. Zurlo"), s);
+    s.erase("d5.txt");
+    s.insert("d1.txt");
+
+    CHECK_EQ(d.recuperacao("newsletter"), s);
+    CHECK_EQ(d.recuperacao("spirituality"), s);
+    CHECK_EQ(d.recuperacao("SCREAMING"), s);
+    CHECK_EQ(d.recuperacao("outrageously"), s);
+    
+    s.erase("d1.txt");
+    s.insert("d22.txt");
+
+    CHECK_EQ(d.recuperacao("worldwide"), s);
+    CHECK_EQ(d.recuperacao("Florida"), s);
+    CHECK_EQ(d.recuperacao("FOLKS"), s);
+    CHECK_EQ(d.recuperacao("STOP"), s);
 }
