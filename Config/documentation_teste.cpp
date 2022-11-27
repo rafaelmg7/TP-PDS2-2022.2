@@ -52,6 +52,7 @@ TEST_CASE("Testa Indice::recuperacao(string frase)"){
     CHECK_EQ(d.recuperacao("jogo do Brasil"), s);
 
     s.insert("d5.txt");
+    
 
     CHECK_EQ(d.recuperacao("Dominick V. Zurlo"), s);
 }
