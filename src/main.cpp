@@ -1,4 +1,4 @@
-#include "contract.hpp"
+#include "../Config/contract.hpp"
 
 using namespace std;
 
@@ -12,9 +12,9 @@ int main(){
         getline(cin, fraseABuscar);
         set<string> recuperados = indice.recuperacao(fraseABuscar);
         if(recuperados.empty()){
-            cout << "Não existem documentos contendo todas as palavras inseridas" << endl;
+            cout << endl << "Não existem documentos contendo todas as palavras inseridas" << endl;
         }else{
-            cout << "Documentos que contém as palavras: " << fraseABuscar << endl;
+            cout << endl << "Documentos que contém as palavras: " << fraseABuscar << endl;
             for(string documento : recuperados){
                 cout << documento << endl;
             }

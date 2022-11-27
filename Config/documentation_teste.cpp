@@ -67,7 +67,7 @@ TEST_CASE("Testa Indice::recuperacao(string frase)"){
     s.insert("d22.txt");
 
     CHECK_EQ(d.recuperacao("worldwide"), s);
-    CHECK_EQ(d.recuperacao("Florida"), s);
+    CHECK_EQ(d.recuperacao("vacationers"), s);
     CHECK_EQ(d.recuperacao("FOLKS"), s);
-    CHECK_EQ(d.recuperacao("STOP"), s);
+    CHECK_EQ(d.recuperacao("aware"), s);
 }

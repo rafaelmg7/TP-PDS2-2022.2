@@ -3,16 +3,33 @@
 using namespace std;
 
 int normalizaCaracter(int valorAsc){
+    // Normaliza variações da letra a
     if((valorAsc >= 192 && valorAsc <= 197) || (valorAsc >= 224 && valorAsc <= 229)){
         valorAsc = 97;
-    }else if((valorAsc >= 200 && valorAsc <= 203) || (valorAsc >= 232 && valorAsc <= 235)){
+    }
+    // Normaliza variações da letra e
+    else if((valorAsc >= 200 && valorAsc <= 203) || (valorAsc >= 232 && valorAsc <= 235)){
         valorAsc = 101;
-    }else if((valorAsc >= 204 && valorAsc <= 207) || (valorAsc >= 236 && valorAsc <= 239)){
+    }
+    // Normaliza variações da letra i
+    else if((valorAsc >= 204 && valorAsc <= 207) || (valorAsc >= 236 && valorAsc <= 239)){
         valorAsc = 105;
-    }else if((valorAsc >= 210 && valorAsc <= 214) || (valorAsc >= 242 && valorAsc <= 246)){
+    }
+    // Normaliza variações da letra o
+    else if((valorAsc >= 210 && valorAsc <= 214) || (valorAsc >= 242 && valorAsc <= 246)){
         valorAsc = 111;
-    }else if((valorAsc >= 217 && valorAsc <= 220) || (valorAsc >= 249 && valorAsc <= 252)){
+    }
+    // Normaliza variações da letra u
+    else if((valorAsc >= 217 && valorAsc <= 220) || (valorAsc >= 249 && valorAsc <= 252)){
         valorAsc = 117;
+    }
+    // Normaliza 'ç'
+    else if(valorAsc == 231){
+        valorAsc = 99;
+    }
+    // Normaliza 'ñ'
+    else if(valorAsc == 241){
+        valorAsc = 110;
     }
     // Se a letra for maiúscula, põe o código da minúscula
     else if (valorAsc >= 65 && valorAsc <= 90){
@@ -63,7 +80,7 @@ string normalizaPalavra(string palavra){
 }
 
 Indice::Indice(){
-    string path = "../documentos";
+    string path = "./documentos";
     ifstream file;
 
     for (const auto & entry : fs::directory_iterator(path)){
